@@ -25,3 +25,14 @@ build:
         name: go test
         code: |
           go test ./...
+    - script:
+        name: copy binary
+        code: cp source $WERCKER_OUTPUT_DIR/app
+
+deploy:
+  internal/docker-push:
+    username: $QUAY_USERNAME
+    password: $QUAY_PASSWORD
+    cmd: ./pipeline/source/app
+    repository: quay.io/tonnu/golang-getting-started
+    registry: https://quay.io
