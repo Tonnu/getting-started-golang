@@ -34,6 +34,9 @@ build:
 
 deploy:
   steps:
+    - script:
+        name: ls
+        code: ls -la /pipeline/source
     - internal/docker-push:
       username: $QUAY_USERNAME
       password: $DOCKER_PASS
