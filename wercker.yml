@@ -3,7 +3,7 @@ dev:
   steps:
     - internal/watch:
         code: |
-          go build ./...
+          go build ./... -o source
           ./source
         reload: true
 # Build definition
@@ -27,7 +27,10 @@ build:
           go test ./...
     - script:
         name: copy binary
-        code: cp source $WERCKER_OUTPUT_DIR/app
+        code: | 
+          cp source $WERCKER_OUTPUT_DIR/app
+          ls -la 
+          ls -la $WERCKER_OUTPUT_DIR
 
 deploy:
   steps:
