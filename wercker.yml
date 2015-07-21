@@ -40,5 +40,4 @@ deploy:
     - internal/docker-push:
       username: $QUAY_USERNAME
       password: $DOCKER_PASS
-      cmd: ./pipeline/source/app
       repository: tonnu/golang 
