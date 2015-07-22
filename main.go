@@ -14,7 +14,7 @@ func CityHandler(res http.ResponseWriter, req *http.Request) {
 
 func main() {
 	http.HandleFunc("/cities.json", CityHandler)
-	err := http.ListenAndServe(":3000", nil)
+	err := http.ListenAndServe(":5000", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
