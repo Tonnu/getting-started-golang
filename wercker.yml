@@ -41,5 +41,5 @@ deploy:
       username: $QUAY_USERNAME
       password: $DOCKER_PASS
       repository: tonnu/golang 
-      entrypoint: /pipeline/source/app
+      cmd: /pipeline/source/app
       ports: "3000"
