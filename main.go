@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 )
@@ -14,6 +15,7 @@ func CityHandler(res http.ResponseWriter, req *http.Request) {
 
 func main() {
 	http.HandleFunc("/cities.json", CityHandler)
+	fmt.Println("started listening...")
 	err := http.ListenAndServe(":3000", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
