@@ -42,4 +42,4 @@ deploy:
       password: $DOCKER_PASS
       repository: tonnu/golang 
       entrypoint: /pipeline/source/app
-      port: "3000"
+      ports: "3000"
