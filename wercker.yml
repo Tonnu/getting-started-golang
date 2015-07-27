@@ -29,6 +29,7 @@ build:
         name: copy binary
         code: | 
           cp source $WERCKER_OUTPUT_DIR/app
+          cp app.lua $WERCKER_OUTPUT_DIR
           ls -la 
           ls -la $WERCKER_OUTPUT_DIR
 
