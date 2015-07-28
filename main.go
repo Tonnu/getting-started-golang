@@ -14,6 +14,7 @@ func CityHandler(res http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
+	http.HandleFunc("/", CityHandler)
 	http.HandleFunc("/cities.json", CityHandler)
 	fmt.Println("started listening...")
 	err := http.ListenAndServe("0.0.0.0:3000", nil)
