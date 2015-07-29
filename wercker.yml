@@ -34,7 +34,7 @@ build:
           ls -la $WERCKER_OUTPUT_DIR
 
 deploy:
-  steps:
+  dockerhub:
     - script:
         name: ls
         code: ls -la /pipeline/source
@@ -43,12 +43,15 @@ deploy:
       password: $DOCKER_PASS
       repository: $APP_IMAGE 
       cmd: "/pipeline/source/app"
+  marathon:
     - script:
         name: generate json
         code: chmod +x template.sh && ./template.sh
     - script:
         name: deploy app to marathon
         code: |
+          echo deploying json
+          cat $APP_NAME.json
           curl -XDELETE -H "Content-type: application/json" $MARATHON_ENDPOINT/$APP_NAME
           sleep 1
           curl -XPOST -H "Content-type: application/json" -d @$APP_NAME.json $MARATHON_ENDPOINT
