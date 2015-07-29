@@ -35,8 +35,6 @@ build:
 
 deploy:
   steps:
-    - install-packages:
-        packages: curl
     - script:
         name: ls
         code: ls -la /pipeline/source
@@ -52,5 +50,5 @@ deploy:
         name: deploy app to marathon
         code: |
           curl -XDELETE -H "Content-type: application/json" $MARATHON_ENDPOINT/$APP_NAME
-          sleep 100
+          sleep 1
           curl -XPOST -H "Content-type: application/json" -d @$APP_NAME.json $MARATHON_ENDPOINT
