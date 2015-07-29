@@ -29,17 +29,28 @@ build:
         name: copy binary
         code: | 
           cp source $WERCKER_OUTPUT_DIR/app
-          cp app.lua $WERCKER_OUTPUT_DIR
+          cp template.sh $WERCKER_OUTPUT_DIR
           ls -la 
           ls -la $WERCKER_OUTPUT_DIR
 
 deploy:
   steps:
+    - install-packages:
+        packages: curl
     - script:
         name: ls
         code: ls -la /pipeline/source
     - internal/docker-push:
       username: $QUAY_USERNAME
       password: $DOCKER_PASS
-      repository: tonnu/golang 
+      repository: $APP_IMAGE 
       cmd: "/pipeline/source/app"
+    - script:
+        name: generate json
+        code: chmod +x template.sh && ./template.sh
+    - script:
+        name: deploy app to marathon
+        code: |
+          curl -XDELETE -H "Content-type: application/json" $MARATHON_ENDPOINT/$APP_NAME
+          sleep 100
+          curl -XPOST -H "Content-type: application/json" -d @$APP_NAME.json $MARATHON_ENDPOINT
