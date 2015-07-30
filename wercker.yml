@@ -48,10 +48,10 @@ deploy:
         name: generate json
         code: chmod +x template.sh && ./template.sh
     - wercker/marathon-deploy:
-        marathon-url: $MARATHON_ENDPOINT
+        marathon-url: http://mesospher-elasticl-12da4hbsepk0r-1823836212.us-east-1.elb.amazonaws.com/service/marathon
         app-name: $APP_NAME
         app-json-file: $APP_NAME.json
-        instances: 3
+        instances: "3"
 #    - script:
 #        name: deploy app to marathon
 #       code: |
