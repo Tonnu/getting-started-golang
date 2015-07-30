@@ -39,10 +39,10 @@ deploy:
         name: ls
         code: ls -la /pipeline/source
     - internal/docker-push:
-      username: $QUAY_USERNAME
-      password: $DOCKER_PASS
-      repository: $APP_IMAGE 
-      cmd: "/pipeline/source/app"
+        username: $QUAY_USERNAME
+        password: $DOCKER_PASS
+        repository: $APP_IMAGE 
+        cmd: "/pipeline/source/app"
   marathon:
     - script:
         name: generate json
