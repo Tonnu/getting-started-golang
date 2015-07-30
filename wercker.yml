@@ -47,11 +47,16 @@ deploy:
     - script:
         name: generate json
         code: chmod +x template.sh && ./template.sh
-    - script:
-        name: deploy app to marathon
-        code: |
-          echo deploying json
-          cat $APP_NAME.json
-          curl -XDELETE -H "Content-type: application/json" $MARATHON_ENDPOINT/$APP_NAME
-          sleep 1
-          curl -XPOST -H "Content-type: application/json" -d @$APP_NAME.json $MARATHON_ENDPOINT
+    - wercker/marathon-deploy:
+        marathon-url: $MARATHON_ENDPOINT
+        app-name: $APP_NAME
+        app-json-file: $APP_NAME.json
+        instances: 3
+#    - script:
+#        name: deploy app to marathon
+#       code: |
+#         echo deploying json
+#         cat $APP_NAME.json
+#         curl -XDELETE -H "Content-type: application/json" $MARATHON_ENDPOINT/$APP_NAME
+#         sleep 1
+#         curl -XPOST -H "Content-type: application/json" -d @$APP_NAME.json $MARATHON_ENDPOINT
