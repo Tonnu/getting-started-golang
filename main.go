@@ -7,7 +7,7 @@ import (
 )
 
 func CityHandler(res http.ResponseWriter, req *http.Request) {
-	data := []byte(`{"cities":"San Francisco, Amsterdam, Berlin, New York, Tokyo"}`)
+	data := []byte(`{"cities":"San Francisco, Amsterdam, Berlin, New York, Tokyo, Warsaw"}`)
 
 	res.Header().Set("Content-Type", "application/json; charset=utf-8")
 	res.Write(data)
