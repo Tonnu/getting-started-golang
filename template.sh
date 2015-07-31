@@ -2,7 +2,7 @@
 cat > $APP_NAME.json <<EOF
 {
     "id": "/$APP_NAME",
-    "instances": 3,
+    "instances": $INSTANCES,
     "container": {
         "type": "DOCKER",
         "docker": {
