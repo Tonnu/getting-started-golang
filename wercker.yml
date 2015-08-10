@@ -3,7 +3,7 @@ dev:
   steps:
     - internal/watch:
         code: |
-          go build ./... -o source
+          go build ./... 
           ./source
         reload: true
 # Build definition
