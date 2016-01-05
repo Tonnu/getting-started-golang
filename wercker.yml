@@ -25,31 +25,21 @@ build:
         name: go test
         code: |
           go test ./...
+
+    # Ready for deployment
     - script:
         name: copy binary
         code: | 
           cp source $WERCKER_OUTPUT_DIR/app
-          cp template.sh $WERCKER_OUTPUT_DIR
-          ls -la 
-          ls -la $WERCKER_OUTPUT_DIR
 
 deploy:
-  dockerhub:
+  steps:
     - script:
-        name: ls
-        code: ls -la /pipeline/source
+        name: echo bla
+        code: echo $SOME_RANDOM_THING
     - internal/docker-push:
         username: $QUAY_USERNAME
         password: $DOCKER_PASS
         repository: $APP_IMAGE 
         cmd: "/pipeline/source/app"
         ports: "$CONTAINER_PORT"
-  marathon:
-    - script:
-        name: generate json
-        code: chmod +x template.sh && ./template.sh
-    - wercker/marathon-deploy:
-        marathon-url: $MARATHON_ENDPOINT
-        app-name: $APP_NAME
-        app-json-file: $APP_NAME.json
-        instances: "$INSTANCES"
