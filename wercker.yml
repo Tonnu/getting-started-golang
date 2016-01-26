@@ -29,18 +29,12 @@ build:
         name: copy binary
         code: | 
           cp source $WERCKER_OUTPUT_DIR/app
-          cp template.sh $WERCKER_OUTPUT_DIR
-          ls -la 
-          ls -la $WERCKER_OUTPUT_DIR
 
 deploy:
   dockerhub:
-    - script:
-        name: ls
-        code: ls -la /pipeline/source
     - internal/docker-push:
-        username: $QUAY_USERNAME
+        username: $DOCKER_USERNAME
         password: $DOCKER_PASS
-        repository: $APP_IMAGE 
+        repository: wercker/golang-demo
         cmd: "/pipeline/source/app"
         ports: "$CONTAINER_PORT"
