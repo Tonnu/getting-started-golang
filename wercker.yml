@@ -1,4 +1,4 @@
-box: golang
+box: golang:1.4-cross
 dev:
   steps:
     - internal/watch:
@@ -34,7 +34,8 @@ deploy:
   dockerhub:
     - internal/docker-push:
         username: $DOCKER_USERNAME
-        password: $DOCKER_PASS
-        repository: wercker/golang-demo
+        password: $QUAY_PASS
+        repository: quay.io/tonnu/golang-getting-started
         cmd: "/pipeline/source/app"
         ports: "$CONTAINER_PORT"
+        registry: https://quay.io
