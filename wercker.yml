@@ -1,4 +1,5 @@
 box: golang:1.4-cross
+
 dev:
   steps:
     - internal/watch:
@@ -29,6 +30,7 @@ build:
         name: copy binary
         code: | 
           cp source $WERCKER_OUTPUT_DIR/app
+    - internal/store-container
 
 deploy:
   dockerhub:
