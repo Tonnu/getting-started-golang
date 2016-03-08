@@ -1,5 +1,4 @@
 box: golang:1.4-cross
-
 dev:
   steps:
     - internal/watch:
