@@ -12,4 +12,3 @@ Note: this sample application only runs on the Ewok stack on wercker
 ---
 Sign up for wercker [here](http://wercker.com)
 Learn more on our [dev center](http://devcenter.wercker.com)
-
